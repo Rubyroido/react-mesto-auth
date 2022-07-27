@@ -4,6 +4,11 @@
   box-sizing: border-box;
   max-width: 880px;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Inter', arial, sans-serif;
+  font-style: normal;
 }
 
 @media screen and (max-width: 650px) {

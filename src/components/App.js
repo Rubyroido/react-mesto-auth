@@ -10,7 +10,7 @@ import CurrentUserContext from '../contexts/CurrentUserContext.js';
 import EditProfilePopup from './EditProfilePopup.js';
 import EditAvatarPopup from './EditAvatarPopup.js';
 import AddPlacePopup from './AddPlacePopup.js';
-import { Route, Switch } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import Login from './Login.js';
 import Register from './Register.js';
 
@@ -140,10 +140,10 @@ function App() {
 
           <Header />
           <Switch>
-            <Route path='/sign-up'>
+            <Route path='/signup'>
               <Register />
             </Route>
-            <Route path='/sign-in'>
+            <Route path='/signin'>
               <Login />
             </Route>
             <Route exact path='/' >

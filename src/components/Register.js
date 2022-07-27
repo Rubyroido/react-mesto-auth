@@ -12,7 +12,7 @@ function Register() {
                 </div>
                 <button type='submit' className='entry__button'>Зарегистрироваться</button>
             </form>
-            <p className='entry__text'>Уже зарегистрированы? <Link to='/sign-in' className='entry__link'>Войти</Link></p>
+            <p className='entry__text'>Уже зарегистрированы? <Link to='/signin' className='entry__link'>Войти</Link></p>
         </div>
     )
 }
