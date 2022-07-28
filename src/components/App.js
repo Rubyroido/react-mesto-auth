@@ -45,6 +45,7 @@ function App() {
   }, [isLoggedIn])
 
   React.useEffect(() => {
+    
     if (token) {
       validate(token)
         .then((res) => {
@@ -169,7 +170,7 @@ function App() {
   function onLogin(password, email) {
     authorize(password, email)
       .then((data) => {
-        history.push('./');
+        history.push('/');
         setUserEmail(data.email);
       })
       .catch(() => {
