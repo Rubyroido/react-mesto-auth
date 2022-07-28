@@ -169,14 +169,8 @@ function App() {
   function onLogin(password, email) {
     authorize(password, email)
       .then((data) => {
-        if (data) {
-          validate(data.token)
-            .then((res) => {
-              setIsLoggedIn(true);
-              history.push('./');
-              setUserEmail(res.data.email);
-            })
-        }
+        history.push('./');
+        setUserEmail(data.email);
       })
       .catch(() => {
         setIsLoggedIn(false);
@@ -196,7 +190,7 @@ function App() {
       <div className='page'>
         <CurrentUserContext.Provider value={currentUser}>
 
-          <Header onSignOut={onSignOut} email={userEmail}/>
+          <Header onSignOut={onSignOut} email={userEmail} />
           <Switch>
             <Route path='/signup'>
               <Register onRegister={onRegister} />
