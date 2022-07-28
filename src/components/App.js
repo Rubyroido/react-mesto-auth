@@ -211,7 +211,9 @@ function App() {
               onCardDelete={handleCardDelete}
             />
           </Switch>
-          <Footer />
+          <Route exact path='/'>
+            <Footer />
+          </Route>
 
           <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
           <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
