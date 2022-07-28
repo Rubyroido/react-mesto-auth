@@ -27,6 +27,7 @@ function App() {
   const [cards, setCards] = React.useState([]);
   const [message, setMessage] = React.useState(false);
   const [isLoggedIn, setIsLoggedIn] = React.useState(localStorage.getItem('token') ? true : false);
+  const [userEmail, setUserEmail] = React.useState('');
   const history = useHistory();
 
   React.useEffect(() => {
@@ -49,6 +50,7 @@ function App() {
         .then((res) => {
           setIsLoggedIn(true);
           history.push('/');
+          setUserEmail(res.data.email);
         })
         .catch((err) => {
           setIsLoggedIn(false);
@@ -172,6 +174,7 @@ function App() {
             .then((res) => {
               setIsLoggedIn(true);
               history.push('./');
+              setUserEmail(res.data.email);
             })
         }
       })
@@ -182,12 +185,18 @@ function App() {
       })
   }
 
+  function onSignOut() {
+    setIsLoggedIn(false);
+    history.push('/signin');
+    localStorage.removeItem('token');
+  }
+
   return (
     <div className='body'>
       <div className='page'>
         <CurrentUserContext.Provider value={currentUser}>
 
-          <Header />
+          <Header onSignOut={onSignOut} email={userEmail}/>
           <Switch>
             <Route path='/signup'>
               <Register onRegister={onRegister} />
@@ -195,16 +204,6 @@ function App() {
             <Route path='/signin'>
               <Login onLogin={onLogin} />
             </Route>
-            {/* <Route exact path='/' >
-              <Main
-                onEditProfile={openEditProfile}
-                onAddPlace={openAddPlace}
-                onEditAvatar={openEditAvatar}
-                onCardClick={setSelectedCard}
-                cards={cards}
-                onCardLike={handleCardLike}
-                onCardDelete={handleCardDelete} />
-            </Route> */}
             <ProtectedRoute
               exact path='/'
               loggedIn={isLoggedIn}
