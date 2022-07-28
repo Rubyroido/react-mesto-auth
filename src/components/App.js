@@ -29,6 +29,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(localStorage.getItem('token') ? true : false);
   const [userEmail, setUserEmail] = React.useState('');
   const history = useHistory();
+  const token = localStorage.getItem('token');
 
   React.useEffect(() => {
     if (isLoggedIn) {
@@ -44,7 +45,6 @@ function App() {
   }, [isLoggedIn])
 
   React.useEffect(() => {
-    const token = localStorage.getItem('token');
     if (token) {
       validate(token)
         .then((res) => {
@@ -57,7 +57,7 @@ function App() {
           console.log(err);
         })
     }
-  })
+  }, [token])
 
   function openEditProfile() {
     setIsEditProfilePopupOpen(true);
